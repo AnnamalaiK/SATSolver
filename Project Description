@@ -1,0 +1,122 @@
+Programming Homework 1: SAT Problem
+Final Due Date: November 27, 2012 at 11:59 pm
+
+=======================================================================
+Boolean Satisfiability
+------------------------------------------------------------------------
+
+The boolean satisfiability problem is to determine given an boolean
+expression containing AND (&), OR (|), NOT (!), and variables whether
+there is truth assignment to the variables that makes the boolean
+expression true.
+
+For example, the expression !a & a is not satisfiable as there is no
+assignment to the boolean variable a that makes the entire expression
+true.
+
+The expression (a | b) & (!a | !b) is satisfiable because the variable
+assignment <a,b>=<true, false> causes the entire expression to be
+true.
+
+=========================================================================
+
+I) The programming assignment is to write a program in Java that takes
+as input a boolean expression and returns whether the boolean
+expression is satisfiable.  If it is satisfiable, return an assignment
+to the variables that satisfies the boolean expression.  Use the input
+and output format specified below (modified from the 2011 sat competition
+rules).
+
+II) Input format:
+Example:
+(a | b ) & (!a | !b)
+
+c This is a comment
+p cnf 2 2
+1 2 0
+-1 -2 0
+
+
+1) The file can start with comments, that is lines beginning with the
+character c.
+
+2) Right after the comments, there is the line p cnf <nbvar>
+<nbclauses> indicating that the instance is in CNF format; <nbvar> is
+the exact number of variables appearing in the file; <nbclauses> is
+the exact number of clauses contained in the file. It is guaranteed
+that each variable between 1 and nbvar appears at least once in a
+clause.
+
+3) Then the clauses follow. Each clause is a sequence of distinct
+non-null numbers between −nbvar and nbvar ending with 0 on the same
+line. Positive numbers denote the corresponding variables. Negative
+numbers denote the negations of the corresponding variables. A clause
+is not allowed to contain the opposite literals i and −i
+simultaneously.
+
+III) Output format:
+Example:
+c Solution for previous problem
+s SATISFIABLE
+v 1 -2 0
+
+The solver should first print out the solution line followed by 1 or more value lines.
+All lines, according to its first char, must belong to one of the
+categories described below.
+
+Solution (“s ” lines) A solution line begins with a lower case s
+followed by a space (ASCII code 32). Only one such line is allowed. It
+is mandatory. This line is used to provide the answer of the
+solver. It must be one of the following answers:
+
+s SATISFIABLE This line indicates that the solver has found a model of
+the formula. In such a case, a “v ” line is mandatory. For decision
+problems, this line must be printed when the solver has found a
+solution.
+
+s UNSATISFIABLE This line must be output when the solver can prove
+that the formula has no solution.
+
+Values (“v ” lines) A values line begins with a lower case v followed
+by a space (ASCII code 32).
+
+A solver that outputs "s SATISFIABLE" must provide a solution. A
+solution is a model (i.e., a satisfying assignment) of the instance
+that will be used to check the correctness of the answer. For
+reporting a model, solvers must provide a list of non-contradictory
+literals which, when interpreted as being true, satisfies each clause
+of the input formula. The negation of a literal is denoted by a minus
+sign immediately followed by the identifier of the variable. The order
+of literals does not matter. Arbitrary white space characters,
+including ordinary white spaces, newline and tabulation characters are
+allowed between the numbers as long as each line containing these
+literals (or clause identifiers) is a values line, i.e. it begins with
+the two characters ”v ”. In any case, the last values line must be
+terminated by a ”0” (zero) followed by a Line Feed character (the
+usual Unix line terminator ’\n’. If the last ”v ” line does not end
+with this sequence, it will be assumed that the solver was interrupted
+before it could print out a complete solution, and this incomplete
+answer will be ignored.
+
+2) Your grade will depend on how large of SAT expressions you can
+solve.  So do some research on the state of the art techniques.
+Consider going beyond them.  Assume that the problems instances will be big.
+Simply iterating through all possible variable assignments is not likely to be a good strategy.
+
+3) Show the output of your program on 3 or more different boolean
+expressions.
+
+IV) To submit your assignment, make a directory called hw1
+
+Here is a checklist of the files you should have:
+
+In the hw1 directory, you should have the following files
+in your unix account:
+hw1sat.java
+hw1.txt
+
+hw1.txt should contain the following statement:
+
+I, your name, hereby certify that the files that I submitted represent my own work, and that I did not copy any code from any other person or source, and that I did not share my code with any other students.
+
+
